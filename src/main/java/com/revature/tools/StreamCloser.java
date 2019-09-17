@@ -37,7 +37,6 @@ public class StreamCloser {
 		}
 	}
 	
-//close
-
+//class closed
 }
 

@@ -3,17 +3,12 @@ package com.revature.service;
 import com.revature.controller.SubMenu;
 import com.revature.exception.NegativeBalanceException;
 import com.revature.model.Account;
-import com.revature.model.Customer;
 
 	public class BalanceManipulation extends SubMenu{
 	
-		// need to find a way to bring account type for methods below
-		
-		
 		// method to withdraw funds
-		public static boolean fundWithdraw(Account abalc, double withdrawAmount) throws NegativeBalanceException {	// gather user input amount and subtracts from available_funds
-		
-			
+		public static boolean fundWithdraw(Account abalc, double withdrawAmount) throws NegativeBalanceException {	
+				
 		if(abalc.getAccountbalance() <= 0) {
 			throw new NegativeBalanceException(); // custom exception here 
 		} else {
@@ -28,27 +23,13 @@ import com.revature.model.Customer;
 		return true;
 	}
 	
-		
-		
 		// method to deposit funds
-		public static void fundDeposit(Account abalc, double depositAmount) {	// gather user input amount and add to avaiable_funds
+		public static void fundDeposit(Account abalc, double depositAmount) {	
 			
 			double newBal = abalc.getAccountbalance() + depositAmount; 
 			javaSpringDAO.updateAccount(abalc.getAccountnumber(), newBal);
-			
 		}
 		
-	}
-	//static Account abal = javaSpringDAO.getbalance(cun.getCustomerId());
+//class closed		
+}
 	
-	//	private static Customer cuna; // npE
-	//BalanceManipulation(abalc);
-				
-	//	logic to try to call account/customer
-	//	public static void setcun (Customer cun) {
-	//		cuna = cun;
-	//	}
-	//	
-	//	public static Customer retrievecun() {
-	//		return cuna;
-	//	}

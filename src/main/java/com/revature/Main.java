@@ -3,8 +3,6 @@
  * JavaSpring QuickTeller App
  * ==========================
  * 
- * 
- * 
  */
 
 package com.revature;
@@ -17,10 +15,9 @@ public class Main {
 		
 		
 		//method to begin functionality
-		//UserMenu um = new UserMenu();
 		UserMenu.userMenu();
 		
 	}
 
-	
+//class closed
 }

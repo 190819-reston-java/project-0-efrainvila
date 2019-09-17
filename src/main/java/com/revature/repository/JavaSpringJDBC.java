@@ -12,13 +12,12 @@ import com.revature.tools.StreamCloser;
 
 public class JavaSpringJDBC implements JavaSpringDAO {
 
-	
-	// methods for pulling Username and password from Customer Table
+
+	// methods for pulling User name and password from Customer Table
 	@Override
 	public Customer getUserandPass(String customerusername, String customerpassword) {
 		Customer remoteCustomer = null;
-		//String remoteUsername = null;
-			
+					
 			try (Connection conn = ConnectionUtil.getConnection()) {
 				String query = "SELECT * FROM customer WHERE username = ? and pwd = ?;";
 				try (PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -29,7 +28,7 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 							if (resultSet.next()) { 
 								
 								remoteCustomer = createCustomerFromRS(resultSet);
-								//remoteUsername = remoteCustomer.getCustomerusername();
+								
 							}
 						}
 						
@@ -43,12 +42,11 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 	}
 	
 	
-// method to pull account balance from Acccount Table
+// method to pull account balance from Account Table
 		@Override
 		public Account getbalance(int id) {
 			Account remoteAccount = null;
-			//String remoteUsername = null;
-				
+							
 				try (Connection conn = ConnectionUtil.getConnection()) {
 					String query = "SELECT * FROM account WHERE accountid = ?;";
 					try (PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -57,7 +55,7 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 							try (ResultSet resultSet = stmt.getResultSet()) {
 								if (resultSet.next()) { 
 									remoteAccount = createAccountFromRS(resultSet);
-									//remoteUsername = remoteCustomer.getCustomerusername();
+									
 								}
 							}
 							
@@ -70,11 +68,8 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 			return remoteAccount;
 		}
 
-
-
 		
-		
-// UPDATE query for Account Table on db = accountbalance , accountnumber
+// UPDATE query for Account Table on javaspring database = accountbalance , accountnumber
 		@Override
 			public boolean updateAccount(String accountnumber, double Accountbalance) {
 			Connection conn = null;
@@ -261,9 +256,6 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 //	return remotelastname;
 //	}
 //
-	
-	
-	
 
 // old logic for pulling account type from db
 //	
@@ -321,9 +313,6 @@ public class JavaSpringJDBC implements JavaSpringDAO {
 //	
 //	return remoteaccountnumber;
 //	}
-	
-		
-		
 	
 // class closed
 }

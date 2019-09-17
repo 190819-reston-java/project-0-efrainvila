@@ -12,9 +12,7 @@ import com.revature.repository.JavaSpringDAO;
 import com.revature.repository.JavaSpringJDBC;
 import com.revature.service.BalanceManipulation;
 
-
 public class UserMenu {
-
 	
 	protected static Scanner userinput = new Scanner(System.in); // can be used every method inside the class as static
 	protected BalanceManipulation balancemanipulator = new BalanceManipulation();
@@ -30,8 +28,7 @@ public class UserMenu {
 		System.out.println("5" + " --> " + "Exit System");
 		
 		String userSelection = userinput.nextLine();
-		
-		
+			
 		switch(userSelection) {
 			case "1":
 				currentcustomer(); // method is below
@@ -51,8 +48,6 @@ public class UserMenu {
 		}
 		userMenu();
 	}
-
-	
 		
 	// method for login check	
 	private static void currentcustomer() {
@@ -65,16 +60,13 @@ public class UserMenu {
 		System.out.println("Please Enter Your Password");
 		String userPassword = userinput.nextLine();
 		
-		
 		// Customer object
 			Customer cun = javaSpringDAO.getUserandPass(userName, userPassword);
-				// BalanceManipulation.setcun(cun);  ExceptionInInitializerError
-			//System.out.println(cun);
+				//System.out.println(cun);
 		
 		// Account object
 		Account abalc = javaSpringDAO.getbalance(cun.getCustomerId());
-			//System.out.println(abalc);
-		
+				//System.out.println(abalc);
 		
 		//login logic  .. should be in another method
 			if (cun != null) {
@@ -91,7 +83,6 @@ public class UserMenu {
 //		}else {
 //			System.out.println("nope!");
 //		}
-		
 			
 //			if (operationsCenter.logincheck(userName, userPassword)) {
 //				validlogin(cun);
@@ -105,27 +96,21 @@ public class UserMenu {
 	public static void validlogin(Customer cun) {
 		
 		System.out.println("Welcome " + cun.getFirstname() + System.lineSeparator());
-		//customerusername = javaSpringDAO.getUserandPass(userName, userPassword);
 		SubMenu.subMenu(cun);
 	}
-	
-	
-	
+
 	// method for invalid login will return to main menu
 	public static void invalidlogin() {
 		System.out.println(" That is not a registered Customer User Name or Password."+ System.lineSeparator());
 		System.out.println(" ... Returning to the Main Menu" + System.lineSeparator());
 		userMenu();
 	}
-	
-	
+
 	// just help text
 	private static void helpusermenu() {
 		System.out.println("For help, please visit with one of our JavaSpring Banking Representatives.");
 		
 	}
 
-	
-	
-	
+//class closed	
 }

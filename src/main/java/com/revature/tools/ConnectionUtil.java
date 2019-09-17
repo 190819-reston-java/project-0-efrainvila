@@ -25,8 +25,7 @@ private static Connection conn = null;
 			
 			// How to actually make connection with jdbc
 			conn = DriverManager.getConnection(url, username, password);
-			//System.out.println("");
-						
+									
 		}catch (IOException e) {
 			e.printStackTrace();
 		}catch (SQLException e) {
@@ -35,5 +34,5 @@ private static Connection conn = null;
 		
 		return conn;
 	}
-	
+//class closed	
 }

@@ -12,7 +12,6 @@ public class SubMenu extends UserMenu {
 			
 			Account abalc = javaSpringDAO.getbalance(customerinfo.getCustomerId());
 			
-			
 			System.out.println("What would you like to do?");
 			System.out.println("==========================");
 			System.out.println("1" + " --> " + "View Current Balance");
@@ -23,39 +22,35 @@ public class SubMenu extends UserMenu {
 			String customerchoice = userinput.nextLine();
 						
 				switch(customerchoice) {
-						case "1": // get account Balance  .. works!
+						case "1": // get account Balance here
 							System.out.println("Current Balance is "+ abalc.getAccountbalance() + " Coins"+ System.lineSeparator());
 							subMenu(cun);
 							
 							break;
 						
-						case "2": // goes to service .. working !
+						case "2": // goes to service/balance manipulation
 							System.out.println("How much will you like to withdraw?");
 								double withdrawAmount = userinput.nextDouble();
 								userinput.nextLine();
 								BalanceManipulation.fundWithdraw(abalc, withdrawAmount);
 								if(BalanceManipulation.fundWithdraw(abalc, withdrawAmount)) {
-									System.out.println("Successful !");
-									// System.out.println("New Balance is : " + abalc.getAccountbalance() + " Coins"+ System.lineSeparator());
-									
+									System.out.println("Successfully withdrawn !" + System.lineSeparator());
+														
 								}else{
 									System.out.println("Can not withdraw more than in balance");
-									// System.out.println("Current Balance is  :" + abalc.getAccountbalance() + " Coins"+ System.lineSeparator()); 
 								}
-								
-							
+												
 							subMenu(cun);
 							
 							break;
 							
-						case "3": // goes to service .. working !!
+						case "3": // goes to service/balance manipulation 
 							System.out.println("Please enter the Deposit Amount.");
 								double depositAmount = userinput.nextDouble();
 								userinput.nextLine();
 								BalanceManipulation.fundDeposit(abalc, depositAmount);
-								System.out.println("Successful !");
-								//System.out.println("New Balance is : " + abalc.getAccountbalance() + " Coins"+ System.lineSeparator());
-							
+								System.out.println("Successfully deposited !" + System.lineSeparator());
+													
 							subMenu(cun);
 						
 							break;
@@ -68,20 +63,11 @@ public class SubMenu extends UserMenu {
 							
 						default:
 							System.out.println("Invalid Selection, Please Select Again.");
+							subMenu(cun);
 							break;
 				}
-		
-				return;
-				
-			}
-		
-		
-		// method to display insufficient funds
-		public static void insufficientFunds() {
-			System.out.println("Insufficient Funds");
-			
-			
+					return;
 		}
-
-
+		
+//class closed		
 }
