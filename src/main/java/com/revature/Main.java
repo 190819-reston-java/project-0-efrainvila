@@ -1,13 +1,26 @@
+/** Project 0 : Banking Project @author Efrain Vila
+ * 
+ * JavaSpring QuickTeller App
+ * ==========================
+ * 
+ * 
+ * 
+ */
+
 package com.revature;
 
-/** 
- * Create an instance of your controller and launch your application.
- * 
- * Try not to have any logic at all on this class.
- */
+import com.revature.controller.UserMenu;
+
 public class Main {
 
 	public static void main(String[] args) {
-
+		
+		
+		//method to begin functionality
+		//UserMenu um = new UserMenu();
+		UserMenu.userMenu();
+		
 	}
+
+	
 }
