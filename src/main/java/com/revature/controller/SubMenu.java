@@ -7,7 +7,7 @@ import com.revature.service.BalanceManipulation;
 public class SubMenu extends UserMenu {
 	
 	 	// sub menu for account balance, withdraw and deposit for normal users
-		public static void subMenu(Customer cun) {
+		public static void subMenu(Customer cun) throws NullPointerException {
 			Customer customerinfo = cun;
 			
 			Account abalc = javaSpringDAO.getbalance(customerinfo.getCustomerId());
@@ -31,7 +31,7 @@ public class SubMenu extends UserMenu {
 						
 						case "2": // goes to service .. working !
 							System.out.println("How much will you like to withdraw?");
-								int withdrawAmount = userinput.nextInt();
+								double withdrawAmount = userinput.nextDouble();
 								userinput.nextLine();
 								BalanceManipulation.fundWithdraw(abalc, withdrawAmount);
 								if(BalanceManipulation.fundWithdraw(abalc, withdrawAmount)) {
@@ -50,7 +50,7 @@ public class SubMenu extends UserMenu {
 							
 						case "3": // goes to service .. working !!
 							System.out.println("Please enter the Deposit Amount.");
-								int depositAmount = userinput.nextInt();
+								double depositAmount = userinput.nextDouble();
 								userinput.nextLine();
 								BalanceManipulation.fundDeposit(abalc, depositAmount);
 								System.out.println("Successful !");

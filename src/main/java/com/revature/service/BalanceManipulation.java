@@ -11,7 +11,7 @@ import com.revature.model.Customer;
 		
 		
 		// method to withdraw funds
-		public static boolean fundWithdraw(Account abalc, int withdrawAmount) throws NegativeBalanceException {	// gather user input amount and subtracts from available_funds
+		public static boolean fundWithdraw(Account abalc, double withdrawAmount) throws NegativeBalanceException {	// gather user input amount and subtracts from available_funds
 		
 			
 		if(abalc.getAccountbalance() <= 0) {
@@ -31,7 +31,7 @@ import com.revature.model.Customer;
 		
 		
 		// method to deposit funds
-		public static void fundDeposit(Account abalc, int depositAmount) {	// gather user input amount and add to avaiable_funds
+		public static void fundDeposit(Account abalc, double depositAmount) {	// gather user input amount and add to avaiable_funds
 			
 			double newBal = abalc.getAccountbalance() + depositAmount; 
 			javaSpringDAO.updateAccount(abalc.getAccountnumber(), newBal);
