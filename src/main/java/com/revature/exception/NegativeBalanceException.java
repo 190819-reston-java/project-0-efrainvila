@@ -10,5 +10,6 @@ public class NegativeBalanceException extends RuntimeException {
 		super(message);
 	}
 	
+	
 //class closed	
 }

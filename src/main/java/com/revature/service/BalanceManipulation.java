@@ -32,7 +32,9 @@ import com.revature.model.Account;
 			double newBal = abalc.getAccountbalance() + depositAmount; 
 			javaSpringDAO.updateAccount(abalc.getAccountnumber(), newBal);
 		}
-		}
+	}
+	
+		
 //class closed		
 }
 	

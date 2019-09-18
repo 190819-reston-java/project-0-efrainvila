@@ -52,14 +52,13 @@ public class BalanceManipulationTest {
 	public void depositTestOfNegativeAmount () {
 		BalanceManipulation.fundDeposit(fbal, -3500);
 	}
-	
-	
+		
 	@AfterClass
 	public static void teardown() {
 		fbal = null;
+		fbal0 = null;
 	}
 	
-	
-	
+		
 //class closed
 }

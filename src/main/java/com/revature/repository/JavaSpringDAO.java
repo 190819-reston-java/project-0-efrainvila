@@ -3,9 +3,6 @@ package com.revature.repository;
 import com.revature.model.Account;
 import com.revature.model.Customer;
 
-/**
- * DAO	: Data Access Objects - Retrieves and stores data about objects
- */
 
 public interface JavaSpringDAO {
 
@@ -29,6 +26,7 @@ public interface JavaSpringDAO {
 //	String getCustomerLastName(String lastname);
 
 //	String getAccountType(String accounttype);
+
 	
 //class closed
 }

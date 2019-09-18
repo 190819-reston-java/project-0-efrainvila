@@ -25,6 +25,7 @@ public class JavaSpringDAOMimic implements JavaSpringDAO {
 	}
 
 	
+	
 //class closed	
 }
 

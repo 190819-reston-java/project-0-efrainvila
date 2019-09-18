@@ -69,6 +69,7 @@ public class Customer {
 		return "Customer [customerId=" + customerId + ", lastname=" + lastname + ", firstname=" + firstname
 				+ ", customerusername=" + customerusername + ", customerpassword=" + customerpassword + "]";
 	}
-		
+	
+	
 //class closed	
 }
