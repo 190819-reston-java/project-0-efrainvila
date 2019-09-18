@@ -20,7 +20,7 @@ public class UserMenu {
 	protected BalanceManipulation balancemanipulator = new BalanceManipulation();
 	protected static JavaSpringDAO javaSpringDAO = new JavaSpringJDBC();
 	
-	private static int invalidChoiceCounter = 0;
+	private static int invalidSelectorCounter = 0;
 	private static int invalidLoginCounter = 0;
 	
 	public static void userMenu() {
@@ -52,11 +52,11 @@ public class UserMenu {
 				
 			default:
 				System.out.println("Invalid Selection, Please Select Again."); // tries again
-				invalidChoiceCounter++;
-				logger.info(invalidChoiceCounter + " attempts made." + System.lineSeparator());
-				logger.debug("After " + invalidChoiceCounter + " reaches 3 attempts, program will exit." + System.lineSeparator());
+				invalidSelectorCounter++;
+				logger.info(invalidSelectorCounter + " attempts made." + System.lineSeparator());
+				logger.debug("After " + invalidSelectorCounter + " reaches 3 attempts, program will exit." + System.lineSeparator());
 				
-					if (invalidChoiceCounter >= 3) {
+					if (invalidSelectorCounter >= 3) {
 						logger.fatal("Failed Selection after 3 times. Forcing System Exit.");
 						System.exit(1);
 					}
@@ -111,7 +111,7 @@ public class UserMenu {
 	// method for valid login to sub menu
 	public static void validlogin(Customer cun) {
 		
-		System.out.println("Welcome " + cun.getFirstname() + cun.getLastname() + System.lineSeparator());
+		System.out.println("Welcome " + cun.getFirstname() +" "+ cun.getLastname() + System.lineSeparator());
 		SubMenu.subMenu(cun);
 	}
 
