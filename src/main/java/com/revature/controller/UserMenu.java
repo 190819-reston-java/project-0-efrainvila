@@ -6,20 +6,27 @@ package com.revature.controller;
 
 import java.util.Scanner;
 
-import com.revature.model.Account;
 import com.revature.model.Customer;
 import com.revature.repository.JavaSpringDAO;
 import com.revature.repository.JavaSpringJDBC;
 import com.revature.service.BalanceManipulation;
+import org.apache.log4j.Logger;
+
 
 public class UserMenu {
 	
+	public static Logger logger = Logger.getLogger(UserMenu.class);
 	protected static Scanner userinput = new Scanner(System.in); // can be used every method inside the class as static
 	protected BalanceManipulation balancemanipulator = new BalanceManipulation();
 	protected static JavaSpringDAO javaSpringDAO = new JavaSpringJDBC();
+	
+	private static int invalidChoiceCounter = 0;
+	private static int invalidLoginCounter = 0;
+	
 	public static void userMenu() {
 		
 		// Main User Menu
+		logger.debug("System Start");
 		System.out.println("Welcome to the JavaSpring QuickTeller Banking System." + System.lineSeparator());
 		System.out.println("Please make a selection from the options below.");
 		System.out.println("===============================================" + System.lineSeparator());
@@ -28,7 +35,8 @@ public class UserMenu {
 		System.out.println("5" + " --> " + "Exit System");
 		
 		String userSelection = userinput.nextLine();
-			
+		logger.info("Selection : " + userSelection);
+		
 		switch(userSelection) {
 			case "1":
 				currentcustomer(); // method is below
@@ -39,11 +47,20 @@ public class UserMenu {
 				break;
 				
 			case "5":
-				System.out.println("Thank You, exiting System."); //system exits
-				return;
+				System.out.println("Thank You for using our App. Exiting System."); //system exits
+				System.exit(0);
 				
 			default:
 				System.out.println("Invalid Selection, Please Select Again."); // tries again
+				invalidChoiceCounter++;
+				logger.info(invalidChoiceCounter + " attempts made." + System.lineSeparator());
+				logger.debug("After " + invalidChoiceCounter + " reaches 3 attempts, program will exit." + System.lineSeparator());
+				
+					if (invalidChoiceCounter >= 3) {
+						logger.fatal("Failed Selection after 3 times. Forcing System Exit.");
+						System.exit(1);
+					}
+				
 				break;
 		}
 		userMenu();
@@ -63,11 +80,6 @@ public class UserMenu {
 		// Customer object
 			Customer cun = javaSpringDAO.getUserandPass(userName, userPassword);
 				//System.out.println(cun);
-		
-		// Account object
-		Account abalc = javaSpringDAO.getbalance(cun.getCustomerId());
-				//System.out.println(abalc);
-		
 		//login logic  .. should be in another method
 			if (cun != null) {
 				validlogin(cun);
@@ -75,6 +87,10 @@ public class UserMenu {
 				invalidlogin();
 			}throw new NullPointerException();
 		
+		// Account object
+		//Account abalc = javaSpringDAO.getbalance(cun.getCustomerId()); <--
+				//System.out.println(abalc);
+			
 //		old login logic
 //			
 //		JavaSpringDAO javaSpringDAO = new JavaSpringJDBC();
@@ -95,15 +111,24 @@ public class UserMenu {
 	// method for valid login to sub menu
 	public static void validlogin(Customer cun) {
 		
-		System.out.println("Welcome " + cun.getFirstname() + System.lineSeparator());
+		System.out.println("Welcome " + cun.getFirstname() + cun.getLastname() + System.lineSeparator());
 		SubMenu.subMenu(cun);
 	}
 
 	// method for invalid login will return to main menu
 	public static void invalidlogin() {
 		System.out.println(" That is not a registered Customer User Name or Password."+ System.lineSeparator());
-		System.out.println(" ... Returning to the Main Menu" + System.lineSeparator());
-		userMenu();
+		
+		invalidLoginCounter++;
+		logger.info(invalidLoginCounter + " failed login attempts.");
+		logger.debug("After 5 Login attempts, system will exit.");
+			if(invalidLoginCounter >= 5) {
+				logger.fatal("Failed 5 Login Attempts. Forcing System Exit.");
+				System.exit(1);
+			}else {	
+				logger.info(" ... Returning to the Main Menu" + System.lineSeparator());
+				userMenu();
+			}
 	}
 
 	// just help text

@@ -2,6 +2,7 @@ package com.revature.service;
 
 import com.revature.controller.SubMenu;
 import com.revature.exception.NegativeBalanceException;
+import com.revature.exception.NegativeDepositException;
 import com.revature.model.Account;
 
 	public class BalanceManipulation extends SubMenu{
@@ -24,12 +25,14 @@ import com.revature.model.Account;
 	}
 	
 		// method to deposit funds
-		public static void fundDeposit(Account abalc, double depositAmount) {	
-			
+		public static void fundDeposit(Account abalc, double depositAmount) throws NegativeDepositException {	
+			if( depositAmount < 0) {
+				throw new NegativeDepositException();
+			}else {
 			double newBal = abalc.getAccountbalance() + depositAmount; 
 			javaSpringDAO.updateAccount(abalc.getAccountnumber(), newBal);
 		}
-		
+		}
 //class closed		
 }
 	

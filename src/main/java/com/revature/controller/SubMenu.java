@@ -10,20 +10,21 @@ public class SubMenu extends UserMenu {
 		public static void subMenu(Customer cun) throws NullPointerException {
 			Customer customerinfo = cun;
 			
+			//Account Object
 			Account abalc = javaSpringDAO.getbalance(customerinfo.getCustomerId());
 			
 			System.out.println("What would you like to do?");
-			System.out.println("==========================");
-			System.out.println("1" + " --> " + "View Current Balance");
-			System.out.println("2" + " --> " + "Make a Withdraw");
-			System.out.println("3" + " --> " + "Add a Deposit");
-			System.out.println("5" + " --> " + "Exit System");
+			System.out.println("=========================="+ System.lineSeparator());
+			System.out.println("1" + " --> " + "View Current Balance" + System.lineSeparator());
+			System.out.println("2" + " --> " + "Make a Withdraw" + System.lineSeparator());
+			System.out.println("3" + " --> " + "Add a Deposit"+ System.lineSeparator());
+			System.out.println("5" + " --> " + "Exit System"+ System.lineSeparator());
 			
 			String customerchoice = userinput.nextLine();
 						
 				switch(customerchoice) {
 						case "1": // get account Balance here
-							System.out.println("Current Balance is "+ abalc.getAccountbalance() + " Coins"+ System.lineSeparator());
+							System.out.println("Current Balance is :"+ abalc.getAccountbalance() + " Coins"+ System.lineSeparator());
 							subMenu(cun);
 							
 							break;
@@ -37,7 +38,7 @@ public class SubMenu extends UserMenu {
 									System.out.println("Successfully withdrawn !" + System.lineSeparator());
 														
 								}else{
-									System.out.println("Can not withdraw more than in balance");
+									System.out.println("Can not withdraw more than in balance.");
 								}
 												
 							subMenu(cun);
@@ -56,7 +57,7 @@ public class SubMenu extends UserMenu {
 							break;
 							
 						case "5":
-							System.out.println("Thank You, exiting System.");
+							System.out.println("Thank You for using our App. Exiting System.");
 							System.exit(0);
 						
 						break;
